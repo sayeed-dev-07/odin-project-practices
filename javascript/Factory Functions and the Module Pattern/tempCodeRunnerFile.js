@@ -1,16 +1,25 @@
-function addNum(value) {
-    let num = value;
+const Formatter = (function() {
+    let timesRun = 0;
+  
+    const log = (message) => console.log(`[${Date.now()}] Logger: ${message}`);
+    const setTimesRun = () => { 
+      log("Setting times run");
+      timesRun++;
+    }
+  
+    const makeUppercase = (text) => {
+      log("Making uppercase");
+      setTimesRun();
+      return text.toUpperCase();
+    };
+    const getTImesRun  = ()=> timesRun;
+  
+    return {
+      makeUppercase,
+      getTImesRun,
+    }
+  })();
 
-    let getNum = () => { return num; }
-    let increaseNum = () => { return num++; }
-
-    return { num, getNum, increaseNum }
-}
-
-let five  = addNum(5);
-five.increaseNum()
-five.increaseNum()
-five.increaseNum()
-console.log(five.getNum());
-console.log(five.num);
-console.log({num : five.num, anotherNum : five.getNum()});
+console.log(Formatter.makeUppercase('sayeed'));
+console.log(Formatter.makeUppercase('sayeed'));
+console.log(Formatter.getTImesRun());
